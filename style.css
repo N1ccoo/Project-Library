@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+:root {
+    --grey: #4D4755;
+    --brown: #D7AC96;
+    --dimGreen: #8DB2BB;
+    --blue: #7A90B2;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -13,20 +20,109 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    background-image: url(images/lib.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 #header {
-    background-color: cornflowerblue;
-    padding: 1rem;
+    padding: 2rem;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
 }
 
-#footer {
-    background-color: cornflowerblue;
-    padding: 1rem;
-    margin-top: auto;
+#header button {
+    background-color: royalblue;
+    font-size: 1.5rem;
+    border: royalblue;
+    padding: 0.4rem 1.2rem;
+    color: white;
+    border-radius: 5px;
 }
+
 
 #grid-container { 
     display: grid;
+}
+
+#form-popup {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2.5rem;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 533.6px;
+    border-radius: 13px;
+}
+
+form div label {
+ text-align: left;
+ width: 80px;
+ display: inline-block;
+ font-size: 1.5rem;
+ color: whitesmoke;
+ margin-right: 0.5rem;
+}
+
+form div input {
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 13px;
+}
+
+ form div select {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    margin-top: 10px;
+    width: 200px;
+    border-radius: 13px;
+    border: none;
+    background-color: var(--dimGreen);
+    color: white;
+}
+
+form div button {
+    background-color: var(--brown);
+    font-size: 1.5rem;
+    border:none;
+    padding: 0.4rem;
+    color: white;
+    border-radius: 8px;
+    width: 120px;
+}
+
+
+.blur {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .7);
+    background: rgba(102, 66, 66, 0.7);
+}
+
+.hidden {
+    display: none;
+}
+
+#btn-container {
+    display: flex;
+    justify-content:space-between;
+    margin-top: 1rem;
+}
+
+form div #pages {
+ width: 65%;
+ width: 200px;
 }

@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-    <div id="header">asdf</div>
-
-    <div id="grid-container">
-        
-    </div>
-
-    <div id="footer">af</div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="script.js" defer></script>
+		<link rel="stylesheet" href="style.css">
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="header" class="blur">
+			<div>Nicco's Library</div>
+			<button>Add</button>
+		</div>
+		<div id="grid-container"></div>
+		<div class="popup blur">
+			<form id="form-popup">
+				<div>
+					<label for="title">Library</label>
+					<input type="text" name="Title" id="title" required>
+				</div>
+				<div>
+					<label for="author"> Author</label>
+					<input type="text" name="Author" id="author" required>
+				</div>
+				<div>
+					<label for="pages"> Pages</label>
+					<input type="number" name="Pages" id="pages" required>
+				</div>
+				<div>
+					<label for="status" required>Status</label>
+					<select name="status" id="status">
+						<option value="reading">Reading</option>
+						<option value="finished">Finished</option>
+						<option value="dropped">Dropped</option>
+					</select>
+				</div>
+				<div id="btn-container">
+					<button type="reset">Reset</button>
+					<button type="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</body>
 </html>
