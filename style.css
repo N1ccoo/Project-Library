@@ -1,200 +1,263 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap");
 :root {
-    --black:rgb(10, 8, 8);
-    --white:rgb(247, 242, 242);
-    --grey:#141414;
+  --darkBlue: rgb(31, 41, 55);
+  --grey: rgb(229, 231, 235);
+  --white: #f9faf8;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
 
 html {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color:var(--grey);
-    gap: 10rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--white);
+  gap: 10rem;
 }
 
 #header {
-    color: rgb(255, 255, 255);
-    font-size: 2rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    letter-spacing: 6px;
-    background: rgb(10, 8, 8);
-   
-    padding: 0 1rem;
-    height: 95px;
+  color: var(--white);
+  font-size: 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  letter-spacing: 6px;
+  background: rgba(31, 41, 55, 0.7);
+  padding: 0 1rem;
+  height: 95px;
+  border-bottom: var(--grey) 2px solid;
 }
 
 .headerSticky {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
-    font-size: 1.8rem !important;
-    height: 65px !important;
-    transition: all 0.6s;
+  box-shadow: 0 5px 15px rgba(3, 3, 3, 0.3);
+  border: none !important;
+  background: rgb(31, 41, 55) !important;
+  font-size: 1.8rem !important;
+  height: 65px !important;
+  transition: all 0.4s;
 }
 
 #header button {
-    background-color:inherit;
-    height: 100%;
-    font-size: 1rem;
-    border: none;
-    color: white;
-    letter-spacing: 3px;
-    padding: 0 1rem;
+  background-color: inherit;
+  height: 100%;
+  font-size: 1rem;
+  border: none;
+  color: var(--grey);
+  letter-spacing: 3px;
+  padding: 0 1rem;
+}
+
+#information {
+  background: rgba(31, 41, 55);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+}
+
+#information-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 800px);
+  align-items: center;
+  justify-items: center;
+}
+
+.info-container {
+  border-top: var(--white) 1px solid;
+  border-bottom: var(--white) 1px solid;
+  padding: 0.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-container div {
+  color: var(--grey);
+  font-size: 1.2rem;
+}
+
+#search-order {
+    display: flex;
+    gap: 1rem;
     
 }
 
-#hero-image {
-    background-image: url(images/library.jpg);
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    height:100vh ;
+#search-order input {
+    font-size: 1.2rem;  
+    padding: 0.4rem; 
+    border: none;
+    border-radius: 6px;
+    background-color: var(--white);
+    
 }
- 
-#grid-container { 
-    display: grid;
-    grid-template-columns: repeat(3,450px);
-    gap: 2rem;
-    align-self: center;
-    margin-top: 6rem;
-    margin-bottom: 3rem;
+
+#search-order select {
+    font-size: 1.2rem;  
+    padding: 0.4rem; 
+    border: none;
+    border-radius: 6px;
+    background-color: var(--white);
+    min-width: 150px;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 600px);
+  gap: 2rem;
+  align-self: center;
 }
 
 #form-popup {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2.5rem;
-    background-color:var(--white);
-    border-radius: 6px;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem;
+  background-color: var(--white);
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 533.6px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 533.6px;
 }
 
 #footer {
-    background-color: var(--black);
-    color: var(--white);
-    font-size: 2rem;
-    letter-spacing: 4px;
-    padding: 2rem;
-    text-align: center;
-    margin-top: auto;
+  background-color: var(--darkBlue);
+  color: var(--white);
+  font-size: 1rem;
+  letter-spacing: 4px;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
 }
 
 form div label {
- text-align: left;
- width: 80px;
- display: inline-block;
- font-size: 1rem;
- color: var(--black);
- margin-right: 0.5rem;
+  text-align: left;
+  width: 80px;
+  display: inline-block;
+  font-size: 1rem;
+  color: var(--black);
+  margin-right: 0.5rem;
 }
 
 form div input {
-    font-size: 1.2rem;
-    padding: 0.4rem;
-    margin-top: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 6px;
-    color: var(--black);
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  color: var(--black);
 }
 
- form div select {
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin-top: 10px;
-    width: 200px;
-    border-radius: 6px;
-    border: none;
-    background-color: var(--grey);
-    color:var(--white);
+form div select {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 10px;
+  width: 200px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--grey);
+  color: var(--darkBlue);
 }
 
 form div button {
-    background-color: var(--grey) ;
-    font-size: 1rem;
-    border:none;
-    padding: 0.4rem;
-    color: var(--white);
-    border-radius: 6px;
-    width: 120px;
+  background-color: var(--grey);
+  font-size: 1rem;
+  border: none;
+  padding: 0.4rem;
+  color: var(--white);
+  border-radius: 6px;
+  width: 120px;
 }
 
 .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 #btn-container {
-    display: flex;
-    justify-content:space-between;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .header-btn-container {
-    height: 100%;
+  height: 100%;
 }
 
 form div #pages {
- width: 65%;
- width: 200px;
+  width: 65%;
+  width: 200px;
 }
 
-
 .book-card {
-    background-color: var(--white);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+  background-color: var(--white);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 1rem;
+  background: #355c7d; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transition: all 1s;
 }
 
 .book-card-text {
-    padding: 1rem;
-    font-size: 2rem;
-    color: var(--black);
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: var(--white);
 }
 
 .book-card-btn {
-    padding: 1rem 2rem;
-    width: 60%;
-    align-self: center;
-    font-size: 1rem;
-    background-color: var(--grey);
-    color: var(--white);
+  padding: 1rem 2rem;
+  width: 200px;
+  align-self: center;
+  font-size: 1rem;
+  background-color: var(--grey);
+  color: var(--white);
+  border-radius: 6px;
+  border: none;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:repeat(2,1fr); 
+    outline: 2px var(--white) solid;
     border-radius: 6px;
-    border:none;
 }
