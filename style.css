@@ -162,7 +162,7 @@ form div input {
   padding: 0.4rem;
   margin-top: 10px;
   width: 100%;
-  border: none;
+  border: var(--darkBlue) 2px solid;
   border-radius: 6px;
   color: var(--black);
 }
@@ -238,14 +238,13 @@ form div #pages {
 }
 
 .book-card-text {
-  padding: 1rem;
   font-size: 1.2rem;
   color: var(--white);
 }
 
 .book-card-btn {
   padding: 1rem 2rem;
-  width: 200px;
+  width: 150px;
   align-self: center;
   font-size: 1rem;
   background-color: var(--grey);
@@ -260,4 +259,25 @@ form div #pages {
     grid-template-rows:repeat(2,1fr); 
     outline: 2px var(--white) solid;
     border-radius: 6px;
+}
+
+.card-button-container {
+    display: flex;
+    align-self: center;
+    gap: 1rem;
+}
+
+.flex {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.red-background {
+    background-color: rgb(184, 48, 48);
+}
+
+.pop-animation {
+    transform: scale(1.1);
+    transition: all 0.3s;
 }
