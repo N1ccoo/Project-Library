@@ -47,6 +47,17 @@ formPopup.addEventListener('submit', createBook);
 formPopup.addEventListener('submit', updateInfo)
 window.addEventListener('scroll', stickyNav);
 
+PagesReadInput.addEventListener('input',formPagesLogic)
+PagesTotalInput.addEventListener('input',formPagesLogic)
+
+function formPagesLogic(e) {
+    if (PagesTotalInput.value === PagesReadInput.value) {
+        Status.value = 'Finished'
+    } else if (Status.value === 'Finished' && PagesTotalInput.value > PagesReadInput.value) {
+        Status.value = 'Reading'
+    }
+}
+
 Status.addEventListener('input',formStatusLogic)
 PagesReadInput.addEventListener('input',updatePreviousReadValue)
 
@@ -117,7 +128,7 @@ function stickyNav() {
 }
 
 function createGridLayout() {
-	let rows = Math.ceil(myLibrary.length / 2);
+	let rows = Math.ceil(myLibrary.length / 1);
 	gridContainer.style.gridTemplateRows = `repeat(${rows},250px)`;
 	gridContainer.innerText = '';
 
@@ -137,8 +148,6 @@ function createGridLayout() {
 		bookCard.addEventListener('transitionend', () => {
 			bookCard.classList.remove('pop-animation')
 		})
-
-
 
 		//Title
 
@@ -273,13 +282,16 @@ function createGridLayout() {
 				e.target.textContent = book.status;
 				bookCard.classList.add('reading')
 				bookCard.classList.remove('finished')
-				book.pagesRead = previousReadValue
+
+                if (previousReadValue !== book.pagesTotal) {
+                    book.pagesRead = previousReadValue
 				PagesReadInfo.textContent = book.pagesRead
+                } else { 
+                previousReadValue = 1
+                book.pagesRead = previousReadValue
+				PagesReadInfo.textContent = book.pagesRead
+                }
 			}
-
-
-
-
 		}
 
 
@@ -292,6 +304,7 @@ function createGridLayout() {
 		deleteBtn.addEventListener('click', e => {
 			myLibrary.pop(book);
 			bookCard.remove();
+            updateInfo()
 		});
 
 		PagesReadInfo.addEventListener('input', cardCharLimit)
@@ -308,29 +321,29 @@ function createGridLayout() {
 			let titleArray = TitleInfo.textContent.split('')
 			let authorArray = AuthorInfo.textContent.split('')
 
-			if (pagesArray.length > 6) {
-				let limit = pagesArray.slice(0, 6)
+			if (pagesArray.length > 9) {
+				let limit = pagesArray.slice(0, 9)
 				PagesReadInfo.textContent = limit.join('')
 				book.pagesRead = PagesReadInfo.textContent
 				PagesReadInfo.blur()
 			}
 
-			if (pagesTotalArray.length > 6) {
-				let limit = pagesTotalArray.slice(0, 6)
+			if (pagesTotalArray.length > 9) {
+				let limit = pagesTotalArray.slice(0, 9)
 				PagesTotalInfo.textContent = limit.join('')
 				book.pagesTotal = PagesTotalInfo.textContent
 				PagesTotalInfo.blur()
 			}
 
 			if (titleArray.length > 19) {
-				let limit = titleArray.slice(0, 19)
+				let limit = titleArray.slice(0, 25)
 				TitleInfo.textContent = limit.join('')
 				book.name = TitleInfo.textContent
 				TitleInfo.blur()
 			}
 
 			if (authorArray.length > 19) {
-				let limit = authorArray.slice(0, 19)
+				let limit = authorArray.slice(0, 25)
 				AuthorInfo.textContent = limit.join('')
 				book.author = AuthorInfo.textContent
 				AuthorInfo.blur()
@@ -386,7 +399,20 @@ function createGridLayout() {
 					PagesReadInfo.textContent = book.pagesRead
 				}
 
+                if (parseInt(PagesTotalInfo.textContent) === (parseInt(PagesReadInfo.textContent))) {
+                    bookCard.classList.remove('reading')
+                    bookCard.classList.remove('dropped')
+                    bookCard.classList.add('finished')
+                    book.status = 'Finished'
+                    Status.textContent = book.status
+                }
 
+                if(book.status == 'Finished' &&  parseInt(PagesTotalInfo.textContent) > parseInt(PagesReadInfo.textContent)) {
+                    bookCard.classList.remove('finished')
+                    bookCard.classList.add('reading')
+                    book.status = 'Reading'
+                    Status.textContent = book.status
+                }
 
 			}
 
@@ -405,6 +431,18 @@ function createGridLayout() {
 			if (TitleInfo.textContent === '') {
 				TitleInfo.textContent = 'Unknown'
 			}
+
+            if (parseInt(PagesReadInfo.textContent) < 1) {
+                book.pagesRead = 1
+                PagesReadInfo.textContent = book.pagesRead
+                console.log('works')
+            }
+
+            if(parseInt(PagesTotalInfo.textContent) < 1) {
+                book.pagesTotal = 1 
+                PagesTotalInfo.textContent = book.pagesTotal
+            }
+
 		}
 	}
 }
