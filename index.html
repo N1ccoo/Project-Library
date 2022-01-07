@@ -21,6 +21,7 @@
 				<div id="information-grid">
 					<div class="info-container">
 						<div id="total-book-count">Total Books : 0</div>
+						<div id="total-book-pages-read">Total Pages Read : 0</div>
 						<div id="total-book-finished">Books Finished : 0</div>
 						<div id="total-book-reading">Currently Reading : 0</div>
 						<div id="total-book-dropped">Books Dropped : 0</div>
@@ -44,19 +45,19 @@
 			<form id="form-popup">
 				<div>
 					<label for="title">Title</label>
-					<input type="text" name="Title" id="title" required maxlength="20">
+					<input type="text" name="Title" id="title" required maxlength="19">
 				</div>
 				<div>
 					<label for="author"> Author</label>
-					<input type="text" name="Author" id="author" required maxlength="20">
+					<input type="text" name="Author" id="author" required maxlength="19">
 				</div>
 				<div>
 					<label for="pagesRead"> Read pages</label>
-					<input type="number" name="PagesRead" id="pagesRead" required max="100000">
+					<input type="number" name="PagesRead" id="pagesRead" required max="999999">
 				</div>
 				<div>
 					<label for="pagesTotal"> Total pages</label>
-					<input type="number" name="PagesTotal" id="pagesTotal" required max="100000">
+					<input type="number" name="PagesTotal" id="pagesTotal" required max="999999">
 				</div>
 				<div>
 					<label for="status" required>Status</label>
