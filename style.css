@@ -3,6 +3,7 @@
   --darkBlue: rgb(31, 41, 55);
   --grey: rgb(229, 231, 235);
   --white: #f9faf8;
+  --darkerBlue: rgb(1, 34, 80);
 }
 
 * {
@@ -21,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--white);
+  background-color: var(--darkBlue);
   gap: 10rem;
 }
 
@@ -33,18 +34,19 @@ body {
   justify-content: space-around;
   align-items: center;
   letter-spacing: 6px;
-  background: rgba(31, 41, 55, 0.7);
+  background: var(--darkerBlue);
   padding: 0 1rem;
   height: 95px;
-  border-bottom: var(--grey) 2px solid;
+  border-bottom: var(--grey) 1px solid;
   z-index: 1000;
   transition: all 0.4s ease-in;
+  text-transform: uppercase;
 }
 
 .headerSticky {
   box-shadow: 0 5px 15px rgba(3, 3, 3, 0.3);
   border: none !important;
-  background: rgb(31, 41, 55) !important;
+
   font-size: 1.8rem !important;
   height: 65px !important;
   transition: all 0.4s ease-out;
@@ -66,7 +68,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5rem;
+  border-bottom: var(--grey) 1px solid;
 }
 
 #information-grid {
@@ -77,8 +79,8 @@ body {
 }
 
 .info-container {
-  border-top: var(--white) 1px solid;
-  border-bottom: var(--white) 1px solid;
+  border-left: var(--white) 1px solid;
+  border-right: var(--white) 1px solid;
   padding: 0.8rem 2rem;
   display: flex;
   flex-direction: column;
@@ -93,6 +95,9 @@ body {
 #search-order {
     display: flex;
     gap: 1rem;
+    border: var(--white) 1px solid;
+    border-radius: 6px;
+    padding: 1rem;
     
 }
 
@@ -158,6 +163,7 @@ form div label {
   font-size: 1rem;
   color: var(--black);
   margin-right: 0.5rem;
+  width: 100px;
 }
 
 form div input {
@@ -176,19 +182,23 @@ form div select {
   margin-top: 10px;
   width: 200px;
   border-radius: 6px;
-  border: none;
-  background-color: var(--grey);
-  color: var(--darkBlue);
+  background-color: var(--white);
+  border: var(--darkBlue) 2px solid;
+  color: var(--black);
 }
 
 form div button {
-  background-color: var(--grey);
-  font-size: 1rem;
-  border: none;
-  padding: 0.4rem;
-  color: var(--white);
-  border-radius: 6px;
-  width: 120px;
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 1px 10px #110c3b36;
+    border-radius: 10px;
+    display: block;
+    border: none;
+    transition: all 0.6s;
 }
 
 .sticky {
@@ -224,11 +234,9 @@ form div #pages {
   justify-content: space-between;
   flex-direction: column;
   padding: 1rem;
-  background: #1a9eaf;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #514A9D, #077b8a);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #514A9D, #219dad); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #1a9eaf;
   transform: scale(1);
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .book-card-text {
@@ -237,15 +245,17 @@ form div #pages {
 }
 
 .book-card-btn {
-  padding: 1rem 2rem;
-  width: 150px;
-  align-self: center;
-  font-size: 1rem;
-  background-color: var(--grey);
-  color: var(--white);
-  border-radius: 6px;
-  border: none;
-  
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 1px 10px #110c3b36;
+    border-radius: 10px;
+    display: block;
+    border: none;
+    transition: 0.6s all;
 }
 
 .card-container {
@@ -273,11 +283,33 @@ form div #pages {
 }
 
 .pop-animation {
-    transform: scale(1.02);
-    transition: all 0.3s;
+    transform: scale(1.1);
+    transition: 0.3s all;
 }
 
-.normal-animation {
-    transform: scale(1);
-    transition: all 0.3s;
+.finished {
+    background: #5433FF;  
+    background: -webkit-linear-gradient(to right, #A5FECB, #20BDFF, #7e69e7); 
+    background: linear-gradient(to right, var(--darkerBlue), #54c6f7, #06a506);
 }
+
+.reading {
+    background: #134E5E;
+    background: -webkit-linear-gradient(to right, #552ceb, #106b85);  
+    background: linear-gradient(to right, var(--darkBlue), #1f95b6); 
+}
+
+.dropped {
+    background: #232526;  
+    background: -webkit-linear-gradient(to right, #414345, #232526); 
+    background: linear-gradient(to right, #978787, #272727);
+}
+
+
+.btn-grad {background-image: linear-gradient(to right, var(--darkBlue) 0%, var(--darkerBlue)  51%, #1a60c9  100%)}
+
+ .btn-grad:hover {
+   background-position: right center; 
+   color: #fff;
+   text-decoration: none;
+ }
