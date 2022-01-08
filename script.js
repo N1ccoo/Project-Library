@@ -39,6 +39,48 @@ let PagesTotalInput = document.getElementById('pagesTotal');
 let PagesReadInput = document.getElementById('pagesRead');
 let Status = document.getElementById('status');
 
+let searchOrder = document.getElementById('order')
+let searchSort = document.getElementById('sort')
+let searchBar = document.getElementById('search-bar')
+
+searchBar.addEventListener('input',searchBookName)
+
+function searchBookName(e) {
+ let Library = Array.from(document.getElementsByClassName('names'))
+	if (this.value.length > 0) { 
+	 
+	 Library.forEach(item => {
+		 if (!(item.textContent.toLowerCase().includes(searchBar.value.toLowerCase()))){
+			 item.parentElement.parentElement.parentElement.classList.add('hidden')
+		 } else {
+			 item.parentElement.parentElement.parentElement.classList.remove('hidden')
+		 }
+	 })
+ } else {
+	 Library.forEach(item => {
+		item.parentElement.parentElement.parentElement.classList.remove('hidden')
+	 })
+ } 
+}
+
+function includesText(book) {
+ 
+
+}
+
+searchOrder.addEventListener('input',orderSortLogic)
+searchSort.addEventListener('input',orderSortLogic)
+
+function orderSortLogic() {
+	if (searchSort.value === 'Insertion') {
+		sortLibraryInsertion(searchOrder.value)
+	} else if (searchSort.value === 'Title') {
+		sortLibraryName(searchOrder.value)
+	} else if (searchSort.value === 'Status') {
+		sortLibraryStatus(searchOrder.value)
+	}
+}
+
 let gridContainer = document.getElementById('grid-container');
 
 addBookBtn.addEventListener('click', unhidePopup);
@@ -87,19 +129,19 @@ function updatePreviousReadValue(e) {
 function unhidePopup(e) {
 	popup.classList.remove('hidden');
 	document.addEventListener('click', closeForm);
+	overlayBlur()
 }
 
 function hidePopup(e) {
 	e.preventDefault();
 	popup.classList.add('hidden');
+	removeOverlayBlur()
 }
 
 function createBook() {
 	if (parseInt(PagesReadInput.value) > parseInt(PagesTotalInput.value)) {
 		PagesReadInput.value = PagesTotalInput.value
 	}
-
-
 
 	let newBook = new Book(Title.value, Author.value, parseInt(PagesTotalInput.value), parseInt(PagesReadInput.value), Status.value);
 	myLibrary.push(newBook);
@@ -114,6 +156,7 @@ function closeForm(e) {
 
 	if (!(withinBoundaries)) {
 		popup.classList.add('hidden');
+		removeOverlayBlur()
 	}
 }
 
@@ -128,8 +171,8 @@ function stickyNav() {
 }
 
 function createGridLayout() {
-	let rows = Math.ceil(myLibrary.length / 1);
-	gridContainer.style.gridTemplateRows = `repeat(${rows},250px)`;
+	let rows = Math.ceil(myLibrary.length / 3);
+	gridContainer.style.gridTemplateRows = `repeat(${rows},500px)`;
 	gridContainer.innerText = '';
 
 	myLibrary.forEach(createBookCard);
@@ -145,9 +188,7 @@ function createGridLayout() {
 		container.classList.add('card-container')
 		bookCard.append(container)
 
-		bookCard.addEventListener('transitionend', () => {
-			bookCard.classList.remove('pop-animation')
-		})
+		
 
 		//Title
 
@@ -165,6 +206,7 @@ function createGridLayout() {
 		let TitleInfo = document.createElement('div');
 		TitleInfo.textContent = book.name;
 		TitleInfo.classList.add('book-card-text');
+		TitleInfo.classList.add('names')
 		textContainer.append(TitleInfo);
 
 		//Author
@@ -181,7 +223,7 @@ function createGridLayout() {
 
 		let AuthorInfo = document.createElement('div');
 		AuthorInfo.textContent = book.author;
-		AuthorInfo.classList.add('book-card-text');
+		AuthorInfo.classList.add('book-card-text');	
 		textContainer.append(AuthorInfo);
 
 		//PagesTotalInfo
@@ -219,7 +261,7 @@ function createGridLayout() {
 
 		let containerButton = document.createElement('div')
 		containerButton.classList.add('card-button-container')
-		bookCard.append(containerButton)
+		container.append(containerButton)
 
 		let Edit = document.createElement('button');
 		Edit.addEventListener('click', editBook)
@@ -361,7 +403,8 @@ function createGridLayout() {
 			e.target.addEventListener('click', updateInfo)
 			e.target.addEventListener('click', editBookDone)
 			emptyEdits()
-			bookCard.classList.add('pop-animation')
+			
+			bookCard.classList.add('scale')
 
 
 			function editBookDone(e) {
@@ -374,7 +417,7 @@ function createGridLayout() {
 				e.target.addEventListener('click', editBook)
 				e.target.removeEventListener('click', editBookDone)
 
-
+				bookCard.classList.remove('scale')
 				book.name = TitleInfo.textContent
 				book.author = AuthorInfo.textContent
 				book.pagesRead = parseInt(PagesReadInfo.textContent)
@@ -477,9 +520,9 @@ function updateInfo() {
 }
 
 function sortLibraryInsertion(order) {
-	if (order === 'ascending') {
+	if (order === 'Ascending') {
 		myLibrary.sort(sortInsertion)
-	} else {
+	} else if (order === 'Descending') { 
 		myLibrary.sort(sortInsertionReverse)
 	}
 	createGridLayout()
@@ -493,4 +536,60 @@ function sortLibraryInsertion(order) {
 		return a.insertion - b.insertion
 
 	}
+}
+
+function sortLibraryName(order) {
+	if(order === 'Ascending') {
+		myLibrary.sort(sortName)
+	} else if (order === 'Descending'){
+		myLibrary.sort(sortNameReverse)
+	}
+
+	createGridLayout()
+
+	function sortNameReverse(a,b) {
+		return a.name > b.name
+	}
+
+	function sortName(a,b) {
+		return a.name < b.name
+	}
+}
+
+function sortLibraryStatus(order) {
+	if(order === 'Ascending') {
+		myLibrary.sort(sortStatus)
+	} else if (order === 'Descending') {
+		myLibrary.sort(sortStatusReverse)
+	}
+
+	createGridLayout()
+
+	function sortStatusReverse(a,b) {
+		let valueOne = (a.status === 'Reading') ? 'a' : (a.status === 'Finished') ? 'b' : 'c'
+		let valueTwo = (b.status === 'Reading') ? 'a' : (b.status === 'Finished') ? 'b' : 'c'
+		return valueOne < valueTwo
+	}
+
+	function sortStatus(a,b) {
+		let valueOne = (a.status === 'Reading') ? 'a' : (a.status === 'Finished') ? 'b' : 'c'
+		let valueTwo = (b.status === 'Reading') ? 'a' : (b.status === 'Finished') ? 'b' : 'c'
+		return valueOne > valueTwo
+	}
+}
+
+function overlayBlur(){
+	let overlay = document.createElement('div')
+	overlay.setAttribute('id','overlay')
+	overlay.classList.add('background-blur')
+	document.body.append(overlay)
+}
+
+
+function removeOverlayBlur() {
+	if (document.getElementsByClassName('background-blur').length >= 1) {
+		let overlay = document.getElementById('overlay')
+		overlay.remove()
+	}
+	
 }

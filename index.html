@@ -29,17 +29,22 @@
 						<div id="total-book-reading">Currently Reading : 0</div>
 						<div id="total-book-dropped">Books Dropped : 0</div>
 					</div>
-					<div id="search-order">
+					<form id="search-order">
+						<div class="finished legend">Finished</div>
+						<div class="reading legend">Reading</div>
+						<div class="dropped legend">Dropped</div>
 						<select name="sort" id="sort">
 							<option value="Insertion">Insertion</option>
 							<option value="Title">Title</option>
+							<option value="Status">Status</option>
 						</select>
 						<select name="order" id="order">
 							<option value="Ascending">Ascending</option>
 							<option value="Descending">Descending</option>
 						</select>
 						<input type="text" name="search-bar" id="search-bar">
-					</div>
+						<button id="searchReset" type="reset" class="red-background">Reset</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -56,11 +61,11 @@
 				</div>
 				<div>
 					<label for="pagesTotal"> Total pages</label>
-					<input type="number" name="PagesTotal" id="pagesTotal" required max="999999999" placeholder="9 digits max">
+					<input type="number" name="PagesTotal" id="pagesTotal" required max="999999999" placeholder="9 digits max" min="1">
 				</div>
 				<div>
 					<label for="pagesRead"> Read pages</label>
-					<input type="number" name="PagesRead" id="pagesRead" placeholder="Must be less than Total Pages">
+					<input type="number" name="PagesRead" id="pagesRead" placeholder="Must be less than Total Pages" min="1">
 				</div>
 				
 				<div>
