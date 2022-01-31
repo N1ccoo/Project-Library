@@ -1,17 +1,28 @@
 let myLibrary = []
 
-function Book(name, author, pagesTotal, pagesRead, status) {
-	this.name = name
-	this.author = author
-	this.pagesRead = pagesRead
-	this.pagesTotal = pagesTotal
-	this.status = status
-	this.insertion = new Date()
+// function Book(name, author, pagesTotal, pagesRead, status) {
+// 	this.name = name
+// 	this.author = author
+// 	this.pagesRead = pagesRead
+// 	this.pagesTotal = pagesTotal
+// 	this.status = status
+// 	this.insertion = new Date()
 
 
-	if (parseInt(this.pagesRead) >= parseInt(this.pagesTotal)) {
-		this.pagesRead = this.pagesTotal
-		this.status = 'Finished'
+// 	if (parseInt(this.pagesRead) >= parseInt(this.pagesTotal)) {
+// 		this.pagesRead = this.pagesTotal
+// 		this.status = 'Finished'
+// 	}
+// }
+
+class Book {
+	constructor (name, author, pagesTotal, pagesRead, status) {
+		this.name = name;
+		this.author = author;
+		this.pagesRead = pagesRead;
+		this.pagesTotal = pagesTotal;
+		this.status = status;
+		this.insertion = new Date();
 	}
 }
 
